@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TechJobsPersistent.Data
 {
-    public class JobDbContext : DbContext
+    public class EmployerDbContext : DbContext
     {
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Employer> Employers { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<JobSkill> JobSkills { get; set; }
 
-        public JobDbContext(DbContextOptions<JobDbContext> options)
+        public EmployerDbContext(DbContextOptions<EmployerDbContext> options)
             : base(options)
         {
         }

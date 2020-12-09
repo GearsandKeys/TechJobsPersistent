@@ -15,9 +15,9 @@ namespace TechJobsPersistent.Controllers
 {
     public class HomeController : Controller
     {
-        private JobDbContext context;
+        private EmployerDbContext context;
 
-        public HomeController(JobDbContext dbContext)
+        public HomeController(EmployerDbContext dbContext)
         {
             context = dbContext;
         }
