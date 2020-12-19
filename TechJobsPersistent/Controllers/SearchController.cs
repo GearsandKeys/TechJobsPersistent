@@ -14,9 +14,9 @@ namespace TechJobsPersistent.Controllers
 {
     public class SearchController : Controller
     {
-        private EmployerDbContext context;
+        private JobDbContext context;
 
-        public SearchController(EmployerDbContext dbContext)
+        public SearchController(JobDbContext dbContext)
         {
             context = dbContext;
         }

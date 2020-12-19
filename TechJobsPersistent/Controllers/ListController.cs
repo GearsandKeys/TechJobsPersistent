@@ -27,9 +27,9 @@ namespace TechJobsPersistent.Controllers
             "skill"
         };
 
-        private EmployerDbContext context;
+        private JobDbContext context;
 
-        public ListController(EmployerDbContext dbContext)
+        public ListController(JobDbContext dbContext)
         {
             context = dbContext;
         }

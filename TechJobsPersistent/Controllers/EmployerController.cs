@@ -13,14 +13,13 @@ namespace TechJobsPersistent.Controllers
 {
     public class EmployerController : Controller
     {
-        private EmployerDbContext context;
-        public EmployerController(EmployerDbContext dbContext)
+        private JobDbContext context;
+        public EmployerController(JobDbContext dbContext)
         {
             context = dbContext;
         }
         
         // GET: /<controller>/
-        [HttpGet]
         public IActionResult Index()
         {
             List<Employer> employers = context.Employers.ToList();
@@ -28,7 +27,7 @@ namespace TechJobsPersistent.Controllers
             return View(employers);
         }
 
-        [HttpGet]
+        
         public IActionResult Add()
         {
             AddEmployerViewModel addEmployerViewModel = new AddEmployerViewModel();
@@ -58,7 +57,7 @@ namespace TechJobsPersistent.Controllers
 
         public IActionResult About(int id)
         {
-            List<Employer> employers = context.Employers.ToList();
+            Employer employers = context.Employers.Find(id);
 
             return View(employers);
         }

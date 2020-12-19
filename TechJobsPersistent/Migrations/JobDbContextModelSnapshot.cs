@@ -6,7 +6,7 @@ using TechJobsPersistent.Data;
 
 namespace TechJobsPersistent.Migrations
 {
-    [DbContext(typeof(EmployerDbContext))]
+    [DbContext(typeof(JobDbContext))]
     partial class JobDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
