@@ -21,19 +21,8 @@ namespace TechJobsPersistent.ViewModels
         public AddJobViewModel(List<Employer> employers, List<Skill> skills)
         {
             Employers = new List<SelectListItem>();
-            Skills = new List<Skill>(); //double check this
+            Skills = new List<Skill>(skills); //double check this
 
-            
-            foreach (Skill skill in skills)
-            {
-                Skills.Add(
-                    new Skill
-                    {
-                        Id = skill.Id,
-                        Name = skill.Name,
-                        Description = skill.Description
-                    });
-            } 
             
             foreach (Employer employer in employers)
             {

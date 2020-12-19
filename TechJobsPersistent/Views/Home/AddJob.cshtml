@@ -1,5 +1,4 @@
-﻿@using TechJobsPersistent.ViewModels
-@model AddJobViewModel
+﻿@model TechJobsPersistent.ViewModels.AddJobViewModel
 
 
 <h1>Add a Job</h1>
@@ -23,8 +22,9 @@
         {
             <input type="checkbox" name="selectedSkills" value="@skill.Id" />
             <label class="form-check-label" for="@skill.Id">@skill.Name</label>
-        } @*When I submit it comes back as null...*@
-        
+        }
+        @*When I submit it comes back as null...*@
+
         <a asp-controller="Skill" asp-action="Add">Add Skill</a>
     </div>
 

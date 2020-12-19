@@ -49,7 +49,8 @@ namespace TechJobsPersistent.Controllers
                 Job newJob = new Job
                 {
                     Name = viewModel.Name,
-                    EmployerId = viewModel.EmployerId
+                    EmployerId = viewModel.EmployerId,
+                    
                 };
 
                 foreach (string item in selectedSkills)
@@ -60,7 +61,7 @@ namespace TechJobsPersistent.Controllers
                         Job = newJob,
                         SkillId = int.Parse(item)
                     };
-                    newJob.JobSkills.Add(newJobSkill);
+                    context.JobSkills.Add(newJobSkill);
                 }
 
                 context.Jobs.Add(newJob);
