@@ -1,16 +1,10 @@
-﻿@model List<TechJobsPersistent.Models.Employer>
+﻿@model TechJobsPersistent.Models.Employer
 
-@if (Model.Count == 0)
-{
-    <p>No information provided.</p>
-}
-else
-@foreach (Employer boss in Model)
-{
-    <h3>Employer @boss.Id </h3>
+
+    <h1>Employer: @Model.Name</h1>
     <div>
-        <p>Name: @boss.Name </p>
-        <p>Location: @boss.Location</p>
+        <p>Name: @Model.Name </p>
+        <p>Location: @Model.Location</p>
     </div>
 
-}
+

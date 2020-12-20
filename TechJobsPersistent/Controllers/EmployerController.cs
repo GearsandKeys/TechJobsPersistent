@@ -47,7 +47,7 @@ namespace TechJobsPersistent.Controllers
                 context.Employers.Add(newEmployer);
                 context.SaveChanges();
 
-                return Redirect("/Employer/Index");
+                return Redirect("/Employer");
 
             }
             
@@ -56,9 +56,9 @@ namespace TechJobsPersistent.Controllers
 
         public IActionResult About(int id)
         {
-            Employer employers = context.Employers.Find(id);
+            Employer employer = context.Employers.Find(id);
 
-            return View(employers);
+            return View(employer);
         }
     }
 }

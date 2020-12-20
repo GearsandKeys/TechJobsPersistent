@@ -2,7 +2,7 @@
 @model AddEmployerViewModel
 <h1>Add New Employer</h1>
 
-<form asp-controller="Employer" asp-action="Add" method="post">
+<form asp-controller="Employer" asp-action="ProcessAddEmployerForm" method="post">
     <div class="form-group">
         <label asp-for="Name">Employer Name</label>
         <input  asp-for="Name"/>

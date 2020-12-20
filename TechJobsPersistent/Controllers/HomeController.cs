@@ -15,16 +15,16 @@ namespace TechJobsPersistent.Controllers
 {
     public class HomeController : Controller
     {
-        private JobDbContext context; 
+        private JobDbContext context;
 
-        public HomeController(JobDbContext dbContext) 
+        public HomeController(JobDbContext dbContext)
         {
             context = dbContext;
         }
 
         public IActionResult Index()
         {
-            List<Job> jobs = context.Jobs.Include(j => j.Employer).Include(j => j.JobSkills).ToList(); //this was different
+            List<Job> jobs = context.Jobs.Include(j => j.Employer).Include(j => j.JobSkills).ToList();
 
             return View(jobs);
         }
@@ -32,25 +32,24 @@ namespace TechJobsPersistent.Controllers
         [HttpGet("/Add")]
         public IActionResult AddJob()
         {
-            List<Employer> employers = context.Employers.ToList();
             List<Skill> skills = context.Skills.ToList();
+            List<Employer> employers = context.Employers.ToList();
+
 
             AddJobViewModel addJobViewModel = new AddJobViewModel(employers, skills);
-            
+
             return View(addJobViewModel);
         }
 
-        
         public IActionResult ProcessAddJobForm(AddJobViewModel addJobViewModel, string[] selectedSkills)
         {
             if (ModelState.IsValid)
             {
-                
                 Job newJob = new Job
                 {
                     Name = addJobViewModel.Name,
                     EmployerId = addJobViewModel.EmployerId,
-                    Employer = context.Employers.Find(addJobViewModel.EmployerId) //Do I need this?
+                    Employer = context.Employers.Find(addJobViewModel.EmployerId),
                 };
 
                 foreach (string item in selectedSkills)
@@ -70,8 +69,8 @@ namespace TechJobsPersistent.Controllers
 
                 return Redirect("Index");
             }
-            
-            return View("AddJob", addJobViewModel);
+
+            return View("Add", addJobViewModel);
         }
 
         public IActionResult Detail(int id)

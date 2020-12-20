@@ -9,5 +9,6 @@ WHERE location='St. Louis City';
 
 --Part 3
 SELECT Name, Description FROM skills
-WHERE Description IS NOT NULL
+LEFT JOIN jobskills on skills.id = jobskills.skillsid
+WHERE jobskills.jobid IS NOT NULL
 ORDER BY Name ASC, Description ASC;
