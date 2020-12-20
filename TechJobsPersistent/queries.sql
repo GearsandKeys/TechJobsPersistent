@@ -1,6 +1,6 @@
 --Part 1
 int Id
-string Name
+varchar Name
 int EmployerId
 
 --Part 2

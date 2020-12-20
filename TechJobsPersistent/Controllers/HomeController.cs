@@ -17,7 +17,7 @@ namespace TechJobsPersistent.Controllers
     {
         private JobDbContext context; 
 
-        public HomeController(JobDbContext dbContext) //JobDbContext
+        public HomeController(JobDbContext dbContext) 
         {
             context = dbContext;
         }
@@ -32,46 +32,46 @@ namespace TechJobsPersistent.Controllers
         [HttpGet("/Add")]
         public IActionResult AddJob()
         {
-            //List<Employer> employers = context.Employers.ToList();
-            //List<Skill> skills = context.Skills.ToList();
+            List<Employer> employers = context.Employers.ToList();
+            List<Skill> skills = context.Skills.ToList();
 
-            AddJobViewModel addJobViewModel = new AddJobViewModel(context.Employers.ToList(), context.Skills.ToList()); ;
+            AddJobViewModel addJobViewModel = new AddJobViewModel(employers, skills);
             
             return View(addJobViewModel);
         }
 
         
-        public IActionResult ProcessAddJobForm(AddJobViewModel viewModel, string[] selectedSkills)
+        public IActionResult ProcessAddJobForm(AddJobViewModel addJobViewModel, string[] selectedSkills)
         {
             if (ModelState.IsValid)
             {
                 
                 Job newJob = new Job
                 {
-                    Name = viewModel.Name,
-                    EmployerId = viewModel.EmployerId,
-                    Employer = context.Employers.Find(viewModel.EmployerId), //Didn't have this
-
+                    Name = addJobViewModel.Name,
+                    EmployerId = addJobViewModel.EmployerId,
+                    Employer = context.Employers.Find(addJobViewModel.EmployerId) //Do I need this?
                 };
 
                 foreach (string item in selectedSkills)
                 {
                     JobSkill newJobSkill = new JobSkill
                     {
-                        Job = newJob,
                         JobId = newJob.Id,
+                        Job = newJob,
                         SkillId = int.Parse(item),
-                        //Skill = context.Skills.Find(int.Parse(item)) //they didnt have this
+                        Skill = context.Skills.Find(int.Parse(item)) //Do I need this?
                     };
                     context.JobSkills.Add(newJobSkill);
                 }
+
                 context.Jobs.Add(newJob);
                 context.SaveChanges();
 
                 return Redirect("Index");
             }
             
-            return View("AddJob", viewModel);
+            return View("AddJob", addJobViewModel);
         }
 
         public IActionResult Detail(int id)
